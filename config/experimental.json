@@ -224,6 +224,39 @@
             },
             "readonly": false,
             "revisionable": true
+        },
+        {
+            "name": "places",
+            "humanName": "Places",
+            "previewUrl": "/role/${name}",
+            "backboneForms": {
+                "schema": {
+                    "placeId": { "type": "Text", "title": "Place ID", "validators": ["required"], "editorAttrs": { "placeholder": "Google Place ID" } }
+                },
+                "defaults": {
+                }
+            },
+            "toStringField": "placeId",
+            "updatedField": { "key": "updated", "type": "Date" },
+            "createdField": { "key": "created", "type": "Date" },
+            "fastSearch": {
+                "find": {
+                    "$or": [
+                        { "name": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } },
+                        { "description": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } }
+                    ]
+                },
+                "sort": { "updated": -1 },
+                "limit": 10,
+                "columns": ["placeId", "created", "updated"]
+            },
+            "relations": {
+            },
+            "mongoose": {
+                "schema": null
+            },
+            "readonly": false,
+            "revisionable": true
         }
     ]
 }

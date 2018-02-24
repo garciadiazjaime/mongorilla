@@ -1,0 +1,36 @@
+{
+    "name": "place",
+    "humanName": "Place",
+    "backboneForms": {
+        "schema": {
+            "name": { "type": "Text", "title": "Name", "validators": ["required"] },
+            "description": { "type": "CKEditor", "title": "Description" },
+            "phones": { "type": "List", "itemType": "Text", "title": "Phone Numbers" },
+            "uri": {
+                "validators": [
+                    "required",
+                    {
+                        "type": "regexp",
+                        "regexp": { "__constructor": "RegExp", "__arguments": ["^[0-9a-z-]{2,}[0-9a-z]$"] }
+                    }
+                ] 
+            }
+        }
+    },
+    "relations": { 
+    },
+    "toStringField": "google.name",
+    "updatedField": { "key": "updated", "type": "Date" },
+    "createdField": { "key": "created", "type": "Date" },
+    "fastSearch": {
+        "find": { "name": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } },
+        "sort": { "updated": -1 },
+        "limit": 10,
+        "columns": ["google.name", "google.url"]
+    },
+    "mongoose": {
+        "schema": null
+    },
+    "readonly": false,
+    "revisionable": true
+}

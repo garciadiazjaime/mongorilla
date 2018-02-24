@@ -7,15 +7,7 @@
         {
             "name": "admin",
             "permissions": {
-                "composer": "crud",
-                "composerCategory": "crud",
-                "instrument": "crud",
-                "opus": "crud",
-                "period": "crud",
-                "score": "crud",
-                "mongorillaRole": "crud",
-                "mongorillaUser": "crud",
-                "mongorillaCollection": "crud"
+                "places": "crud"
             }
         },
         {
@@ -35,7 +27,7 @@
     ],
     "users": [
         { "username": "test", "password": "123", "fullname": "Test User", "roles": ["editor"] },
-        { "username": "admin", "password": "123", "fullname": "Administrator", "roles": ["admin", "editor"] },
+        { "username": "admin", "password": "123", "fullname": "Administrator", "roles": ["admin"] },
         { "username": "guest", "password": "", "fullname": "Guest User", "roles": ["admin", "editor"] }
     ],
     "collections": []

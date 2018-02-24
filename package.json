@@ -5,7 +5,8 @@
   "private": false,
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/requirejs/bin/r.js -o public/app.build.js",
-    "start": "node server.js"
+    "start": "MONGORILLA_MONGO_URL=mongodb://localhost/directory node server.js",
+    "inspect": "MONGORILLA_MONGO_URL=mongodb://localhost/directory node --inspect-brk server.js"
   },
   "dependencies": {
     "body-parser": "^1.10.2",
