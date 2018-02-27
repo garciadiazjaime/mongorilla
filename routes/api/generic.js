@@ -215,8 +215,12 @@ exports.getSearch = function (req, res) {
                                             }
                                         }
                                     });
-                                    result = _(result).pick(['_id'].concat(collection.fastSearch.columns)); // clean up deep objects, and left only dot written props
-                                    data[i] = result;
+                                    data[i] = _(collection.fastSearch.columns).concat(['_id']).reduce((item, key) => {
+                                        item[key] = eval(`result.${key}`)
+                                        return item
+                                    }, {})
+                                    // result = _(result).pick(['_id'].concat(collection.fastSearch.columns)); // clean up deep objects, and left only dot written props
+                                    // data[i] = result;
                                 });
                                 res.send({
                                     collectionName: collection.name,

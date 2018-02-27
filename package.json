@@ -5,6 +5,7 @@
   "private": false,
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/requirejs/bin/r.js -o public/app.build.js",
+    "dev": "MONGORILLA_MONGO_URL=mongodb://localhost/directory nodemon server.js",
     "start": "MONGORILLA_MONGO_URL=mongodb://localhost/directory node server.js",
     "inspect": "MONGORILLA_MONGO_URL=mongodb://localhost/directory node --inspect-brk server.js"
   },
@@ -26,6 +27,7 @@
     "mongoose-when": "*",
     "morgan": "^1.5.1",
     "multer": "^0.1.7",
+    "nodemon": "^1.15.1",
     "requirejs": "^2.1.11",
     "serve-favicon": "^2.2.0",
     "sha1": "^1.1.0",

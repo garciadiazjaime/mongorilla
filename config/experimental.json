@@ -231,24 +231,68 @@
             "previewUrl": "/role/${name}",
             "backboneForms": {
                 "schema": {
-                    "placeId": { "type": "Text", "title": "Place ID", "validators": ["required"], "editorAttrs": { "placeholder": "Google Place ID" } }
+                    "placeId": { "type": "Text", "title": "Place ID", "validators": ["required"], "editorAttrs": { "placeholder": "Google Place ID" } },
+                    "google.name": { "type": "Text", "title": "Name" },
+                    "google.international_phone_number": { "type": "Text", "title": "Phone" },
+                    "google.url": { "type": "Text", "title": "Url" },
+                    "google.photos": { "type": "List", "title": "Photo" },
+                    "google.category": {
+                        "type": "Select",
+                        "title": "Category",
+                        "options": [
+                            "tacos",
+                            "pizza",
+                            "burger",
+                            "sushi",
+                            "mariscos",
+                            "cafe",
+                            "restaurante",
+                            "bar"
+                        ]
+                    },
+                    "google.isOnrightLocation": { "type": "Checkbox", "title": "Location Flag" },
+                    "google.website": { "type": "Text", "title": "Website" },
+                    "google.rating": { "type": "Number", "title": "Google Rating" },
+                    "google.formatted_address": { "type": "Text", "title": "Address" },
+                    "google.geometry.location.lat": {
+                        "title": "Latitude",
+                        "type": "Text"
+                    },
+                    "google.geometry.location.lng": {
+                        "title": "Longitude",
+                        "type": "Text"
+                    },
+                    "google.reviews": {
+                        "title": "Reviews",
+                        "type": "List",
+                        "itemType": "Object",
+                        "subSchema": {
+                            "author_name": { "type": "Text" },
+                            "author_url": { "type": "Text" },
+                            "language": { "type": "Text" },
+                            "profile_photo_url": { "type": "Text" },
+                            "rating": { "type": "Text" },
+                            "relative_time_description": { "type": "Text" },
+                            "text": { "type": "Text" },
+                            "time": { "type": "Text" }
+                        }
+                    }
                 },
                 "defaults": {
                 }
             },
-            "toStringField": "placeId",
+            "toStringField": "google.name",
             "updatedField": { "key": "updated", "type": "Date" },
             "createdField": { "key": "created", "type": "Date" },
             "fastSearch": {
                 "find": {
                     "$or": [
-                        { "name": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } },
-                        { "description": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } }
+                        { "google.name": { "__constructor": "RegExp", "__arguments": ["(^|\\W*)${q}", "ig"] } }
                     ]
                 },
                 "sort": { "updated": -1 },
                 "limit": 10,
-                "columns": ["placeId", "created", "updated"]
+                "columns": ["placeId", "google.name", "created", "updated"]
             },
             "relations": {
             },
